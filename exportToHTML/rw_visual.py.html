@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>rw_visual.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6897bb;}
+.s4 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+rw_visual.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">matplotlib.pyplot </span><span class="s0">as </span><span class="s1">plt</span>
+
+<span class="s0">from </span><span class="s1">random_walk </span><span class="s0">import </span><span class="s1">RandomWalk</span>
+
+<span class="s2"># Keep making new walks, as long as the program is active.</span>
+<span class="s0">while True</span><span class="s1">:</span>
+    <span class="s2"># Make a random walk.</span>
+    <span class="s1">rw = RandomWalk(</span><span class="s3">75_000</span><span class="s1">)</span>
+    <span class="s1">rw.fill_walk()</span>
+
+    <span class="s2"># Plot the points in the walk.</span>
+    <span class="s1">plt.style.use(</span><span class="s4">'classic'</span><span class="s1">)</span>
+    <span class="s1">fig</span><span class="s0">, </span><span class="s1">ax = plt.subplots(figsize=(</span><span class="s3">15</span><span class="s0">, </span><span class="s3">9</span><span class="s1">))</span>
+    <span class="s1">point_numbers = range(rw.num_points)</span>
+    <span class="s1">ax.scatter(rw.x_values</span><span class="s0">, </span><span class="s1">rw.y_values</span><span class="s0">, </span><span class="s1">c=point_numbers</span><span class="s0">, </span><span class="s1">cmap=plt.cm.Blues</span><span class="s0">, </span><span class="s1">edgecolors=</span><span class="s4">'none'</span><span class="s0">, </span><span class="s1">s=</span><span class="s3">1</span><span class="s1">)</span>
+
+    <span class="s2"># Emphasize the first and last points.</span>
+    <span class="s1">ax.scatter(</span><span class="s3">0</span><span class="s0">, </span><span class="s3">0</span><span class="s0">, </span><span class="s1">c=</span><span class="s4">'green'</span><span class="s0">, </span><span class="s1">edgecolors=</span><span class="s4">'none'</span><span class="s0">, </span><span class="s1">s=</span><span class="s3">100</span><span class="s1">)</span>
+    <span class="s1">ax.scatter(rw.x_values[-</span><span class="s3">1</span><span class="s1">]</span><span class="s0">, </span><span class="s1">rw.y_values[-</span><span class="s3">1</span><span class="s1">]</span><span class="s0">, </span><span class="s1">c=</span><span class="s4">'red'</span><span class="s0">, </span><span class="s1">edgecolors=</span><span class="s4">'none'</span><span class="s0">, </span><span class="s1">s=</span><span class="s3">100</span><span class="s1">)</span>
+
+    <span class="s2"># Remove the axes.</span>
+    <span class="s1">ax.get_xaxis().set_visible(</span><span class="s0">False</span><span class="s1">)</span>
+    <span class="s1">ax.get_yaxis().set_visible(</span><span class="s0">False</span><span class="s1">)</span>
+
+    <span class="s1">plt.show()</span>
+    <span class="s1">keep_running = input(</span><span class="s4">&quot;Make another walk (y/n): &quot;</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s1">keep_running == </span><span class="s4">'n'</span><span class="s1">:</span>
+        <span class="s0">break</span>
+</pre>
+</body>
+</html>
